@@ -17,7 +17,7 @@
 
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
-		// antialias	: true,
+		antialias	: true,
 		alpha: true
 	});
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
@@ -81,7 +81,7 @@
 
 	// create atToolkitContext
 	var arToolkitContext = new THREEx.ArToolkitContext({
-		cameraParametersUrl: THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
+		cameraParametersUrl: 'camera_para.dat',
 		detectionMode: 'mono',
 		maxDetectionRate: 30,
 		canvasWidth: 80*3,
@@ -109,7 +109,7 @@
 	scene.add(markerRoot)
 	var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		type : 'pattern',
-		patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro'
+		patternUrl : 'patt.hiro'
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
 	})
 
@@ -135,18 +135,17 @@
 	var mtl_loader = new THREE.MTLLoader()
 	var obj_loader = new THREE.OBJLoader();
 		
-		mtl_loader.load('Drone_ar_onemesh.mtl', function (materials) {
+		mtl_loader.load('gold_leg.mtl', function (materials) {
 			materials.preload();
-
-			//obj_loader.setMaterials(materials)
-			obj_loader.load( 'Drone_ar_onemesh.obj', function ( group ) {
-				mesh0 = group.children[0];
-				mesh0.material = new THREE.MeshPhongMaterial({color: 0xbdc3c7} );
-				mesh0.material.side = THREE.DoubleSide;
-				mesh0.position.y = 0;
-				mesh0.rotation.x = Math.PI * 3 / 2;
-				mesh0.scale.set(0.2,0.2,0.2);
-				arWorldRoot.add(mesh0);
+			obj_loader.setMaterials(materials);
+			obj_loader.load( 'gold_leg.obj', function ( object ) {
+				//mesh0 = group.children[0];
+				//object.material.side = THREE.DoubleSide;
+				object.scale.set(0.5,0.5,0.5);
+				object.position.y = 0;
+				object.position.x = 3;
+				object.rotation.x = Math.PI * 3 / 2;
+				arWorldRoot.add(object);
 			}, onProgress, onError );
 		});
 
