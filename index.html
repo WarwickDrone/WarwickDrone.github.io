@@ -141,9 +141,9 @@
 			obj_loader.load( 'gold_leg.obj', function ( object ) {
 				//mesh0 = group.children[0];
 				//object.material.side = THREE.DoubleSide;
-				//object.scale.set(0.5,0.5,0.5);
+				object.scale.set(0.5,0.5,0.5);
 				object.position.y = 0;
-				object.position.x = 6;
+				object.position.x = 3;
 				object.rotation.x = Math.PI * 3 / 2;
 				arWorldRoot.add(object);
 			}, onProgress, onError );
